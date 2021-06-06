@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lob="clr-namespace:FinalE.Entities.Lobby;assembly=FinalE.Entities"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="FinalE.UI_Test.Views.LobbyViewWindow"
+        Title="LobbyViewWindow">
+  <Grid ColumnDefinitions="*,*"
+        Margin="10">
+    <StackPanel Grid.Column="0">
+      <TextBlock Text="{Binding LobbyId}"/>
+      <TextBlock Text="{Binding LobbyName}"/>
+      <TextBlock Text="{Binding LobbyPassword}"/>
+      <TextBlock Text="{Binding LobbyHost}"/>
+      <Button Command="{Binding Leave}"
+              Content="Leave Lobby"/>
+      <Button Command="{Binding InitGame}"
+              Content="Initialize Game"/>
+    </StackPanel>
+
+    <ListBox Grid.Column="1"
+             SelectionMode="Single"
+             Items="{Binding Players}">
+      <ListBox.ItemTemplate>
+        <DataTemplate DataType="lob:Player">
+          <StackPanel Orientation="Vertical"
+                      Margin="5,10">
+            <TextBlock Text="{Binding ConnectionId}"/>
+            <TextBlock Text="{Binding Username}"/>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+</Window>

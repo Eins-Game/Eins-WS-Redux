@@ -13,6 +13,7 @@ namespace FinalE.Entities.Game
         public CardColor Color { get; set; }
     }
 
+    [Flags]
     public enum CardColor
     {
         Red = 1,

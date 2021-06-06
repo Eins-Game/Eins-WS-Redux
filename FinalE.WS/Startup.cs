@@ -36,7 +36,7 @@ namespace FinalE.WS
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FinalE.WS", Version = "v1" });
             });
-            var epoch = new DateTime(2021, 1, 1, 1, 0, 0, DateTimeKind.Utc);
+            var epoch = new DateTime(2021, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             services.AddSingleton(new IdGenerator(0, new IdGeneratorOptions(new IdStructure(45, 2, 16), new DefaultTimeSource(epoch))));
             services.AddSingleton(new ConcurrentDictionary<long, GameLobby>());
         }

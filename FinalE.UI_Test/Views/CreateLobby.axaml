@@ -1,0 +1,22 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="100"
+        x:Class="FinalE.UI_Test.Views.CreateLobby"
+        Height="150"
+        Width="200"
+        Title="CreateLobby">
+  <StackPanel VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+    <TextBox Width="150"
+             Watermark="Name"
+             Text="{Binding NewLobbyName}"/>
+    <TextBox Width="150"
+             Watermark="Password"
+             Text="{Binding NewLobbyPassword}"/>
+    <Button HorizontalAlignment="Center"
+            Command="{Binding CreateLobby}"
+            Content="Create Lobby"/>
+  </StackPanel>
+</Window>

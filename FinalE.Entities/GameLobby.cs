@@ -41,8 +41,8 @@ namespace FinalE.Entities
             if (p == default) 
                 return Task.FromResult(true);
             this.Players.Remove(p);
-            if (connectionId == this.Host)
-                this.Host = this.Players[0].ConnectionId;
+            if (connectionId == this.Host && this.Players.Count != 0)
+                this.Host = this.Players[0]?.ConnectionId;
             return Task.FromResult(true);
         }
 

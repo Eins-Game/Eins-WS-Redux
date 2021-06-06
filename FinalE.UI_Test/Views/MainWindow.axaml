@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FinalE.UI_Test.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:le="clr-namespace:FinalE.Entities.Transport;assembly=FinalE.Entities"
+        mc:Ignorable="d" d:DesignWidth="750" d:DesignHeight="450"
+        MinWidth="750"
+        Width="750"
+        Height="500"
+        x:Class="FinalE.UI_Test.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="FinalE.UI_Test">
+
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition MinWidth="200" Width="auto"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <TextBlock Grid.Column="0"
+               Grid.Row="0"
+               Text="Eins Test UI"/>
+    <StackPanel Grid.Column="1"
+                Grid.Row="0"
+                Orientation="Horizontal"
+                VerticalAlignment="Top">
+      <TextBox Width="150"
+               Watermark="Username"
+               Margin="10,0"
+               Text="{Binding Username}"/>
+      <Button Margin="5,0"
+              Command="{Binding Connect}"
+              Content="Connect"/>
+      <Button Margin="5,0"
+              Command="{Binding GetLobbies}"
+              Content="Refresh Lobbies"/>
+      <Button Margin="5,0"
+              Command="{Binding CreateLobby}"
+              Content="Create Lobby"/>
+    </StackPanel>
+
+    <ListBox Grid.Column="0"
+             Grid.ColumnSpan="2"
+             Grid.Row="1"
+             SelectionMode="Single"
+             SelectedItem="{Binding SelectedLobby}"
+             Items="{Binding Lobbies}">
+      <ListBox.ItemTemplate>
+          <DataTemplate DataType="le:GameLobby">
+            <Grid ColumnDefinitions="auto,auto,auto">
+              <TextBlock Grid.Column="0"
+                         Text="{Binding Id}"
+                         Margin="5,0"/>
+              <TextBlock Grid.Column="1"
+                         Text="{Binding Name}"
+                         Margin="5,0"/>
+              <Button Grid.Column="2"
+                      Content="Join"
+                      Command="{Binding DataContext.JoinLobby, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                      CommandParameter="{Binding Id}"/>
+            </Grid>            
+          </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    
+  </Grid>
+
+</Window>

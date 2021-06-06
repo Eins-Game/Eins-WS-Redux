@@ -21,7 +21,7 @@ namespace FinalE.WS.Hubs
             foreach (var item in lobby.Players)
             {
                 var p = await lobby.Game.AddPlayer(item.ConnectionId, item.Username);
-                await this.Clients.Client(item.ConnectionId).SendAsync("GameInitialized", p);
+                await this.Clients.Client(item.ConnectionId).SendAsync("GameInitialized", p, lobby.Game.Cards.Peek());
             }
             await this.Clients.Client(lobby.Game.CurrentPlayer).SendAsync("TurnNotification");
             await this.Clients.AllExcept(lobby.Players.Select(x => x.ConnectionId)).SendAsync("LobbyUpdated", new Entities.Transport.GameLobby
